@@ -13,7 +13,7 @@ stages:
     outs:
     - data/Posts.tsv
   split:
-    cmd: python code/split_train_test.py 0.2 1234
+    cmd: python code/split_train_test.py 0.3 1234
     deps:
     - code/split_train_test.py
     - data/Posts.tsv

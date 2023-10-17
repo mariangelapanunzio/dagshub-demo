@@ -29,7 +29,7 @@ stages:
       md5: 2910bc798f44dc244424712c8f88e879
       size: 25679203
   split:
-    cmd: python code/split_train_test.py 0.2 1234
+    cmd: python code/split_train_test.py 0.3 1234
     deps:
     - path: code/split_train_test.py
       hash: md5
@@ -42,12 +42,12 @@ stages:
     outs:
     - path: data/Posts-test.tsv
       hash: md5
-      md5: b273ad4146169f95aa5d7a60221c7921
-      size: 5012174
+      md5: ff4d33d630ec6a94677ee960f31f48d6
+      size: 7646863
     - path: data/Posts-train.tsv
       hash: md5
-      md5: dfcd992c9c398201515eb879b7283101
-      size: 20898709
+      md5: db1644b918b42bb9c00fef0cb6730bf2
+      size: 18264020
   featurize:
     cmd: python code/featurization.py
     deps:
@@ -57,21 +57,21 @@ stages:
       size: 2199
     - path: data/Posts-test.tsv
       hash: md5
-      md5: b273ad4146169f95aa5d7a60221c7921
-      size: 5012174
+      md5: ff4d33d630ec6a94677ee960f31f48d6
+      size: 7646863
     - path: data/Posts-train.tsv
       hash: md5
-      md5: dfcd992c9c398201515eb879b7283101
-      size: 20898709
+      md5: db1644b918b42bb9c00fef0cb6730bf2
+      size: 18264020
     outs:
     - path: data/matrix-test.pkl
       hash: md5
-      md5: dafc0eb8b3806252d6bfe4678e2b5204
-      size: 2272922
+      md5: a941efd74a5492ce2d788e12ef9e96b0
+      size: 3423414
     - path: data/matrix-train.pkl
       hash: md5
-      md5: af3da1ce67cde348e3171c0921f5086f
-      size: 9248499
+      md5: 0ddc5b120fea2ae2c24d7ba1d5337e34
+      size: 8086151
   train:
     cmd: python code/train_model.py 1234
     deps:
@@ -81,13 +81,13 @@ stages:
       size: 945
     - path: data/matrix-train.pkl
       hash: md5
-      md5: af3da1ce67cde348e3171c0921f5086f
-      size: 9248499
+      md5: 0ddc5b120fea2ae2c24d7ba1d5337e34
+      size: 8086151
     outs:
     - path: data/model.pkl
       hash: md5
-      md5: 3ccdf741ff689460e5de009ca73aa00b
-      size: 6778894
+      md5: cc98953e504f4855e84738758efea282
+      size: 5951523
   evaluate:
     cmd: python code/evaluate.py
     deps:
@@ -97,14 +97,14 @@ stages:
       size: 947
     - path: data/matrix-test.pkl
       hash: md5
-      md5: dafc0eb8b3806252d6bfe4678e2b5204
-      size: 2272922
+      md5: a941efd74a5492ce2d788e12ef9e96b0
+      size: 3423414
     - path: data/model.pkl
       hash: md5
-      md5: 3ccdf741ff689460e5de009ca73aa00b
-      size: 6778894
+      md5: cc98953e504f4855e84738758efea282
+      size: 5951523
     outs:
     - path: metrics/auc.metric
       hash: md5
-      md5: 9ed8553e1d3e783fd77c01c3dadb9695
+      md5: b3742ba8090a4fa4004fae1a9b4e4921
       size: 15
